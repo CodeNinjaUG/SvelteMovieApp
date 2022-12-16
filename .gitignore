@@ -2,7 +2,7 @@
 /public/build/
 
 .DS_Store
-config.js
-helpers.js
+src/config.js
+src/helpers.js
 .env
 
