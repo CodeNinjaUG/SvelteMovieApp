@@ -18,7 +18,6 @@ const handleFetchMovies = async(loadMore, searchTerm) => {
       isLoading = true;
       error = false;
       movies = await fetchMovies(movies, loadMore, searchTerm);
-      console.log(movies);
       }catch(err){
          error = true;
       }
@@ -30,6 +29,9 @@ const handleSearch = event => {
    movies.movies=  [];
    handleFetchMovies(false, searchTerm);
 }
+
+const handleLoadMore = () => handleFetchMovies(true, searchTerm);
+
 
 onMount( async() => {
     handleFetchMovies(false,searchTerm)
@@ -59,7 +61,17 @@ onMount( async() => {
          />
     {/each}
 </Grid>
-<LoadMoreButton/>
+<!-- {movies.totalPages} -->
+<!-- {#if !isLoading && movies.currentPage < movies.totalPages}
+    <LoadMoreButton on:loadMore={handleLoadMore}>
+        Load More
+    </LoadMoreButton>
+{/if} -->
+
+<LoadMoreButton on:loadMore={handleLoadMore}>
+    Load More
+</LoadMoreButton>
+
 <Spinner/>
 <style>
 
