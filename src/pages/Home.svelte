@@ -34,8 +34,21 @@ const handleLoadMore = () => handleFetchMovies(true, searchTerm);
 
 
 onMount( async() => {
-    handleFetchMovies(false,searchTerm)
+    const sessionMovies = window.sessionStorage.getItem('all-movies');
+    if(sessionMovies){
+       console.log('from storage');
+       movies = JSON.parse(sessionMovies);
+    }else{
+        console.log('from api');
+        handleFetchMovies(false,searchTerm)
+    }
 })
+
+$:{
+    if(movies.movies.length > 0){
+        window.sessionStorage.setItem('all-movies',JSON.stringify(movies));
+    }
+}
 </script>
 
 {#if error}

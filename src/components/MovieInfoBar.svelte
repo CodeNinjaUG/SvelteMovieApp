@@ -1,10 +1,8 @@
 <script>
    import { calcTime , convertMoney} from '../helpers';
-
    export let time;
    export let budget;
    export let revenue;
-
 </script>
 
 <div class="wrapper">
@@ -23,8 +21,7 @@
 </div>
 </div>
 <style>
-
-
+ 
 .wrapper{
     display: flex;
     align-items: center;

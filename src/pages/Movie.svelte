@@ -23,8 +23,21 @@
        isLoading = false;
     }
     onMount(async () => {
-        handleFetchMovie();
+        const localMovie = window.localStorage.getItem(params.id);
+        if(localMovie){
+            console.log('grabing from local storage');
+            movie = JSON.parse(localMovie);
+        }else{
+            console.log('grabbing from api')
+            handleFetchMovie();
+        }
     })
+
+    $:{
+        if(movie){
+            window.localStorage.setItem(params.id, JSON.stringify(movie));
+        }
+    }
 </script>
 {#if error}
    <p> Something went wrong </p>
