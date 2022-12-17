@@ -1,22 +1,19 @@
 <script>
-   const sveltelogo = '/images/svelte-logo.svg';
-   const tmdbLogo = '/images/tmdb_logo.svg';
+   const sveltelogo = '/images/logo.svg';
+   const tmdbLogo = '/images/logo.svg';
 </script>
-
 <header class="wrapper">
     <div class="content">
         <a href="/" aria-label="Go Home">
           <img class="svelte-logo" src={sveltelogo} alt="svelte-logo"/>
         </a>
-        <img class="tmdb-logo" src={tmdbLogo}  alt="tmdb_logo"/>
+        <img class="tmdb-logo" src={tmdbLogo} alt="tmdb_logo"/>
     </div>
 </header>
-
 <style>
     .wrapper{
         background: #1c1c1c;
         padding:0 20px;
-
     }
     .content{
         display: flex;
@@ -32,12 +29,10 @@
         width: 250px;
         margin-top:20px;
     }
-
     .tmdb-logo{
         width: 122px;
         margin-top: 25px;
     }
-
     @media screen and (max-width:500px){
         .content{
             max-width: 1280px;

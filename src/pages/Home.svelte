@@ -6,6 +6,7 @@ import Search from '../components/Search.svelte';
 import Grid from '../components/Grid.svelte';
 import Thumb from '../components/Thumb.svelte';
 import Spinner from '../components/Spinner.svelte';
+import { IMAGE_BASE_URL,BACKDROP_SIZE, POSTER_SIZE } from '../config.js';
 import LoadMoreButton from '../components/LoadMoreButton.svelte';
 let movies = { movies:[]};
 let isLoading;
@@ -18,20 +19,46 @@ const handleFetchMovies = async(loadMore, searchTerm) => {
       error = false;
       movies = await fetchMovies(movies, loadMore, searchTerm);
       console.log(movies);
-    }catch(err){
-       error = true;
-    }
-    isLoading = false;
+      }catch(err){
+         error = true;
+      }
+      isLoading = false;
 }
 
-onMount(async() => {
+const handleSearch = event => {
+   searchTerm = event.detail.searchText;
+   movies.movies=  [];
+   handleFetchMovies(false, searchTerm);
+}
+
+onMount( async() => {
     handleFetchMovies(false,searchTerm)
 })
 </script>
-<Hero/>
-<Search/>
-<Grid/>
-<Thumb/>
+
+{#if error}
+    <p> Something went wrong ...</p>
+{:else}
+
+{#if movies.heroImage && !searchTerm}
+<Hero
+  image={`${IMAGE_BASE_URL}${BACKDROP_SIZE}${movies.heroImage.backdrop_path}`}
+  title={movies.heroImage.original_title}
+  text={movies.heroImage.overview}
+  />
+{/if}
+{/if}
+
+<Search on:search={handleSearch}/>
+<Grid header={ searchTerm ? 'Search Result' : 'Popular Movies'}>
+    {#each movies.movies as movie}
+         <Thumb 
+          clickable
+          image={movie.poster_path && IMAGE_BASE_URL + POSTER_SIZE + movie.poster_path}
+          movieId={movie.id}
+         />
+    {/each}
+</Grid>
 <LoadMoreButton/>
 <Spinner/>
 <style>
