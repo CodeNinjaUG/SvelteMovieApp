@@ -71,8 +71,9 @@ onMount( async() => {
 <LoadMoreButton on:loadMore={handleLoadMore}>
     Load More
 </LoadMoreButton>
-
+{#if isLoading}
 <Spinner/>
+{/if}
 <style>
 
 </style>
