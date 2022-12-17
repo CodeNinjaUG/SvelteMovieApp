@@ -32,9 +32,16 @@
   <div transition:fade={{duration:300}} >
          <Navigation movie={movie.original_title}/>
          <MovieInfo  {movie} />
-         <MovieInfoBar />
-         <Grid />
-         <Actor />
+         <MovieInfoBar
+          time={movie.runtime}
+          budget={movie.budget}
+          revenue={movie.revenue}
+         />
+         <Grid>
+         {#each movie.actors as actor}
+            <Actor {actor}/>
+         {/each}
+        </Grid>
   </div>
   {/if}
   {#if  isLoading}

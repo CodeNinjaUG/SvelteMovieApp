@@ -1,7 +1,21 @@
 <script>
-
+  import {
+    POSTER_SIZE,
+    IMAGE_BASE_URL
+  } from '../config';
+  const no_image = '/images/no_image.jpg';
+  export let actor;
 </script>
 
+<div class="wrapper">
+   <img src={actor.profile_path ? `${IMAGE_BASE_URL}${POSTER_SIZE}${actor.profile_path}` : no_image }  alt="actorthumb"/>
+   <span class="name">
+       {actor.name}
+   </span>
+   <span class="character">
+    {actor.character}
+</span>
+</div>
 
 <style>
     .wrapper{
