@@ -6,7 +6,7 @@
 </script>
 <div class="wrapper">
     {#if clickable}
-       <a href="/movie /{movieId}">
+       <a href="/movie/{movieId}">
          <img class="clickable" src={image ? image: noImage } alt="moviethumb" />
        </a>
         {:else}
